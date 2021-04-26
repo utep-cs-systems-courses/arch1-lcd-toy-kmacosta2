@@ -33,7 +33,7 @@ WDT:
 	PUSH	R5
 	PUSH	R4
 	; end of prologue
-	CALL	#wdt_c_handler
+	CALL	#wdt_c_handler		; might have changed the value of the registers
 	; start of epilogue
 	POP	R4
 	POP	R5
@@ -47,11 +47,11 @@ WDT:
 	POP	R13
 	POP	R14
 	POP	R15
-	cmp	#0, &redrawScreen
-	jz	dont_wake
-	and	#0xffef, 0(r1)	; clear CPU off in saved SR
+	cmp	#0, &redrawScreen 	; redrawScreen - 0
+	jz	dont_wake		; jump if 0
+	and	#0xffef, 0(r1)		; clear CPU off in saved copy of SR
 dont_wake:	
-	RETI
+	RETI				; return from an interrupt: POP R2 (SR), POP R0 (PC) 
 	.size	WDT, .-WDT
 	.local	count
 	.comm	count,1,1

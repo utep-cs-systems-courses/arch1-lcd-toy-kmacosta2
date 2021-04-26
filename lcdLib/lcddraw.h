@@ -5,6 +5,13 @@
 #ifndef lcddraw_included
 #define lcddraw_included
 
+/** Draw an entire spear 
+ * pointing to the left and moving.
+ */
+void drawSpear(u_char size, u_char offset_r, u_char offset_c);
+
+void drawEnd(u_char size, u_char offset_r, u_char offset_c);
+
 /** Draw single pixel at col, row 
  *
  *  \param col Column to draw to

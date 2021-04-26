@@ -4,8 +4,35 @@
 #include "lcdutils.h"
 #include "lcddraw.h"
 
+/* Draw a spear, similar to a diamond, but
+with a decreased slope on the right side.
+There will also be an outline on the surface.
+ */
+void drawSpear(u_char size, u_char offset_r, u_char offset_c)
+{
+  for (u_char r = 0; r <= size; r++) {
+    for (u_char c = 0; c <= (size-r); c++) { 
+      //drawPixel(offset_c + c, offset_r - r, COLOR_GRAY);
+      drawPixel(offset_c - c, offset_r - r, COLOR_GRAY);
+      // drawPixel(offset_c + c, offset_r + r, COLOR_GRAY);
+      drawPixel(offset_c - c, offset_r + r, COLOR_GRAY);
+      
+    }
+  }
+  drawEnd(size, offset_r, offset_c);
+}
 
-/** Draw single pixel at x,row 
+/* Draws the end of my spear */
+void drawEnd(u_char size, u_char offset_r, u_char offset_c)
+{
+  for (u_char r = 0; r <= size; r++) {
+    for (u_char c = 0; c <= (size-r)*2; c++) {
+      drawPixel(offset_c + c, offset_r - r, COLOR_GRAY);
+      drawPixel(offset_c + c, offset_r + r, COLOR_GRAY);
+    }
+  }
+}
+/** Draw single pixel at x,row
  *
  *  \param col Column to draw to
  *  \param row Row to draw to
@@ -75,7 +102,7 @@ void drawChar5x7(u_char rcol, u_char rrow, char c,
 /** Draw string at col,row
  *  Type:
  *  FONT_SM - small (5x8,) FONT_MD - medium (8x12,) FONT_LG - large (11x16)
- *  FONT_SM_BKG, FONT_MD_BKG, FONT_LG_BKG - as above, but with background color
+ 5*  FONT_SM_BKG, FONT_MD_BKG, FONT_LG_BKG - as above, but with background color
  *  Adapted from RobG's EduKit
  *
  *  \param col Column to start drawing string
