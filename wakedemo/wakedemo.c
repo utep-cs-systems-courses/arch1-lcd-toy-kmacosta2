@@ -55,10 +55,10 @@ void main()
   while (1) {			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
-      drawString5x7(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
-      drawString5x7(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
-      // drawString8x12(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
-      // drawString8x12(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
+      //drawString5x7(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
+      // drawString5x7(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
+      drawString8x12(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
+      drawString8x12(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
       currentCol = nextCol;
       currentRow = nextRow;
     }

@@ -3,6 +3,7 @@
  */
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "drawKunai.h"
 
 
 /** 8x12 font - this function draws background pixels
@@ -13,7 +14,7 @@ void drawChar8x12(u_char rcol, u_char rrow, char c,
   u_char col = 0;
   u_char row = 0;
   u_char bit = 0x01;
-  int oc = c - 0x20; //needed to change this from an u_char to an "int"
+  int oc = c - 0x20;
 
   lcd_setArea(rcol, rrow, rcol + 7, rrow + 12); /* relative to requested col/row */
   while (row < 13) {// 1+
@@ -43,10 +44,10 @@ void drawString8x12(u_char col, u_char row, char *string,
 }
 
 
-/* Draw a spear, similar to a diamond, but
+/* Draws a kunai, similar to a diamond, but
 with a decreased slope on the right side.
 There will also be an outline on the surface.
- */
+ */ /*
 void drawSpear(u_char size, u_char offset_r, u_char offset_c)
 {
   for (u_char r = 0; r <= size; r++) {
@@ -60,8 +61,8 @@ void drawSpear(u_char size, u_char offset_r, u_char offset_c)
   }
   drawEnd(size, offset_r, offset_c);
 }
-
-/* Draws the end of my spear */
+*/
+/* Draws the end of my spear */ /*
 void drawEnd(u_char size, u_char offset_r, u_char offset_c)
 {
   for (u_char r = 0; r <= size; r++) {
@@ -71,6 +72,7 @@ void drawEnd(u_char size, u_char offset_r, u_char offset_c)
     }
   }
 }
+	*/
 /** Draw single pixel at x,row
  *
  *  \param col Column to draw to
