@@ -47,14 +47,13 @@ void drawString8x12(u_char col, u_char row, char *string,
 /* Draws a kunai, similar to a diamond, but
 with a decreased slope on the right side.
 There will also be an outline on the surface.
- */ /*
+ */
+/*
 void drawSpear(u_char size, u_char offset_r, u_char offset_c)
 {
   for (u_char r = 0; r <= size; r++) {
     for (u_char c = 0; c <= (size-r); c++) { 
-      //drawPixel(offset_c + c, offset_r - r, COLOR_GRAY);
       drawPixel(offset_c - c, offset_r - r, COLOR_GRAY);
-      // drawPixel(offset_c + c, offset_r + r, COLOR_GRAY);
       drawPixel(offset_c - c, offset_r + r, COLOR_GRAY);
       
     }
@@ -72,7 +71,8 @@ void drawEnd(u_char size, u_char offset_r, u_char offset_c)
     }
   }
 }
-	*/
+				*/
+	
 /** Draw single pixel at x,row
  *
  *  \param col Column to draw to

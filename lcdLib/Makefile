@@ -14,6 +14,9 @@ libLcd.a: font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o drawKunai.o
 lcddraw.o: lcddraw.c lcddraw.h lcdutils.h drawKunai.h
 lcdutils.o: lcdutils.c lcdutils.h
 
+drawKunai.o: drawKunai.s drawKunai.h
+
+
 install: libLcd.a
 	mkdir -p ../h ../lib
 	mv $^ ../lib
