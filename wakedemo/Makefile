@@ -17,6 +17,8 @@ lcdutils.o: lcdutils.c lcdutils.h
 
 drawKunai.o: drawKunai.s drawKunai.h
 
+#drawKunaiC.o: drawKunai.h
+
 stateMachines.o: led.h switches.h
 
 buzzer.o: buzzer.h

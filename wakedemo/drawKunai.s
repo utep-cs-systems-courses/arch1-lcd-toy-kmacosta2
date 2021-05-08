@@ -18,22 +18,24 @@ secondTop:
 	cmp 1(r1), 5(r1)	; T5 - c
 	jnc secondOut
 
-	mov 0(r1), 6(r1) 	; T1 = r
-	mov 1(r1), 7(r1)	; T2 = c
-	mov 8(r1), 3(r1)	; T3 = offset_r
-	sub 6(r1), 8(r1)	; T3 -= T1
-	mov 9(r1), 4(r1)	; T4 = offset_c
-	mov 9(r1), 7(r1)	; T4 -= T2
+	mov.b 0(r1), 6(r1) 	; T1 = r
+	mov.b 1(r1), 7(r1)	; T2 = c
+	mov.b 8(r1), 3(r1)	; T3 = offset_r
+	sub.b 6(r1), 8(r1)	; T3 -= T1
+	mov.b 9(r1), 4(r1)	; T4 = offset_c
+	mov.b 9(r1), 7(r1)	; T4 -= T2
 	call #drawPixel		; method call
-	mov 3(r1), 8(r1)	; 
-	add 6(r1), 8(r1)	; 
+	mov.b 3(r1), 8(r1)	; 
+	add.b 6(r1), 8(r1)	; 
 	call #drawPixel
-	add #1, 1(r1)		; c++
-	secondTop
+	add.b #1, 1(r1)		; c++
+	jmp secondTop
 
 secondOut:
-	add #1, 0(r1)		; r++
+	add.b #1, 0(r1)		; r++
+	jmp top
 
-outer:
+outer:				;resrvParameters
+	
 	call #drawEnd
 	pop r0			;return
