@@ -2,6 +2,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
+#include "drawKunai.h"
 
 #define LED_GREEN BIT6             // P1.6
 
@@ -19,12 +20,23 @@ void wdt_c_handler()
 {
   static int secCount = 0;
   static int dSecCount = 0;
+  static int sizeCount = 0;
   secCount ++;
   dSecCount ++;
+  sizeCount ++;
   if (secCount == 250) {		/* once/sec */
     secCount = 0;
+    sizeCount = 0;
+    
+    u_char size = 20, offset_r = 70, offset_c = 65;
+    drawSpear(size, offset_r, offset_c);
+    clearScreen(COLOR_BLUE);
     fontFgColor = (fontFgColor == COLOR_GREEN) ? COLOR_BLACK : COLOR_GREEN;
     redrawScreen = 1;
+  }
+
+  if (sizeCount == 250) {		/* once/sec */
+    sizeCount = 0;
   }
   if (dSecCount == 25) {         /* 10x / sec */
     dSecCount = 0;
@@ -47,6 +59,7 @@ void main()
   P1OUT |= LED_GREEN;
   configureClocks();
   lcd_init();
+  u_char width = screenWidth, height = screenHeight;
   
   enableWDTInterrupts();      /**< enable periodic interrupt */
   or_sr(0x8);	              /**< GIE (enable interrupts), bit 4 for CPU OFF */
@@ -55,8 +68,8 @@ void main()
   while (1) {			/* forever */
     if (redrawScreen) {
       redrawScreen = 0;
-      drawString5x7(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
-      drawString5x7(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
+      drawString5x7(currentCol, currentRow, "MK11", COLOR_BLUE, COLOR_BLUE);
+      drawString5x7(nextCol, nextRow, "MK11", fontFgColor, COLOR_BLUE);
       //drawString8x12(currentCol, currentRow, "hello", COLOR_BLUE, COLOR_BLUE);
       //drawString8x12(nextCol, nextRow, "hello", fontFgColor, COLOR_BLUE);
       currentCol = nextCol;
