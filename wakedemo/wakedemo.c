@@ -1,3 +1,4 @@
+
 #include <msp430.h>
 #include <libTimer.h>
 #include "lcdutils.h"
@@ -26,18 +27,26 @@ void wdt_c_handler()
   sizeCount ++;
   if (secCount == 250) {		/* once/sec */
     secCount = 0;
-    sizeCount = 0;
-    
-    u_char size = 20, offset_r = 70, offset_c = 65;
+    sizeCount = 0; 
+    u_char size = 30, offset_r = 70, offset_c = 65;
     drawSpear(size, offset_r, offset_c);
-    clearScreen(COLOR_BLUE);
     fontFgColor = (fontFgColor == COLOR_GREEN) ? COLOR_BLACK : COLOR_GREEN;
     redrawScreen = 1;
   }
-
-  if (sizeCount == 250) {		/* once/sec */
-    sizeCount = 0;
+  if (sizeCount == 1) {
+    clearScreen(COLOR_BLUE);
+    u_char size = 15, offset_r = 70, offset_c = 65;
+    drawSpear(size, offset_r, offset_c);
   }
+  if (sizeCount == 84) {
+    u_char size = 20, offset_r = 70, offset_c = 65;
+    drawSpear(size, offset_r, offset_c);
+  }
+  if (sizeCount == 167) {
+    u_char size = 25, offset_r = 70, offset_c = 65;
+    drawSpear(size, offset_r, offset_c);
+  }
+  
   if (dSecCount == 25) {         /* 10x / sec */
     dSecCount = 0;
     nextCol += velocity;
@@ -50,8 +59,6 @@ void wdt_c_handler()
   }
   
 }
-
-
 
 void main()
 {
